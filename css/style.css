@@ -506,6 +506,7 @@ body {
   border-radius: 50%;
   max-width: 400px;
   max-height: 400px;
+  margin: 0 auto;
 }
 .intro__photo img {
   width: 100%;
@@ -616,45 +617,25 @@ body {
   }
 
   .intro {
-    background-image: url("../img/coolerInner.png");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    position: relative;
-  }
-  .intro::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    z-index: 2;
-    background-color: rgba(0, 0, 0, 0.6);
+    padding-top: 80px;
   }
   .intro__inner {
-    position: relative;
-    z-index: 3;
+    flex-direction: column-reverse;
   }
   .intro__item_left {
-    width: 80%;
+    width: 100%;
   }
   .intro__item_right {
-    display: none;
+    width: 70%;
+    margin-bottom: 15px;
   }
   .intro__title {
-    margin-bottom: 25px;
-    color: #f5f2de;
+    margin-bottom: 15px;
   }
   .intro__descr {
     font-size: 14px;
-    margin-bottom: 45px;
-    color: #f5f2de;
+    margin-bottom: 25px;
   }
-  .intro__btn {
-    color: #f5f2de;
-  }
-
   .services__inner {
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(3, 1fr);
