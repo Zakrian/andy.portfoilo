@@ -1,0 +1,159 @@
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2400;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8);
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease-in-out 0s;
+}
+
+.body_fixed {
+  position: fixed;
+}
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 2500;
+  width: 600px;
+  height: 550px;
+  margin: 0 auto;
+  overflow: hidden;
+  transform: translate(-50%, -50%) scale(0);
+  background-color: $dark-color;
+  border-radius: 3px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease-in-out 0s;
+  &__wrap {
+    padding: 15px;
+  }
+  &__inner {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+  &__top {
+    padding-bottom: 15px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid rgba(245, 242, 222, 0.3);
+  }
+  &__down {
+    margin-bottom: 20px;
+  }
+  &__close {
+    position: absolute;
+    top: 15px;
+    right: 0px;
+    cursor: pointer;
+  }
+  &__btn {
+    position: relative;
+    width: 25px;
+    height: 25px;
+    display: block;
+    background-color: transparent;
+    span {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: inline-block;
+      width: 100%;
+      height: 1px;
+      background-color: $light-color;
+      &:nth-child(1) {
+        transform: rotate(45deg);
+      }
+      &:nth-child(2) {
+        top: 0;
+        transform: rotate(-45deg);
+      }
+    }
+  }
+  &__title {
+    @include adaptiv-font(20, 16);
+    color: $light-color;
+    margin-right: 55px;
+  }
+  &__form {
+    display: flex;
+    flex-direction: column;
+  }
+  &__item {
+    width: 100%;
+    height: 40px;
+    border-radius: 3px;
+    padding: 10px;
+    &:not(:last-child) {
+      margin-bottom: 20px;
+    }
+  }
+  &__message {
+    height: 200px;
+    overflow: hidden;
+    resize: none;
+  }
+  &__submit {
+    width: 40%;
+    height: 30px;
+    border-radius: 3px;
+    background-color: $light-color;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+    &:hover {
+      background-color: $accent-color;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .modal {
+    width: 95%;
+  }
+}
+@media (max-height: 550px) {
+  .modal {
+    height: 97%;
+    &__wrap {
+      padding: 10px;
+    }
+    &__top {
+      padding-bottom: 5px;
+      margin-bottom: 10px;
+    }
+    &__item:not(:last-child) {
+      margin-bottom: 5px;
+    }
+    &__item {
+      width: 100%;
+      height: 30px;
+      border-radius: 3px;
+      padding: 5px;
+    }
+    &__message {
+      height: 90px;
+    }
+    &__down {
+      margin-bottom: 15px;
+    }
+  }
+}
+
+._show-overlay {
+  opacity: 1;
+  visibility: visible;
+}
+._show-modal {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+  visibility: visible;
+}
