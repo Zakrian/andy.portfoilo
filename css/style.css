@@ -84,7 +84,8 @@ h1, h2, h3, h4, h5, h6 {
   font-style: normal;
   font-display: block;
 }
-[class^=_icon-]::before, [class*=" _icon-"]::before {
+[class^=_icon-]::before,
+[class*=" _icon-"]::before {
   /* use !important to prevent issues with browser extensions that change fonts */
   font-family: "icons" !important;
   speak: never;
@@ -376,7 +377,7 @@ main {
   text-align: center;
 }
 .intro__title {
-  max-width: 650px;
+  max-width: 750px;
   width: 100%;
   margin-bottom: 25px;
   font-size: 45px;
@@ -422,6 +423,203 @@ main {
   .intro__btn {
     max-width: 250px;
     font-size: 16px;
+  }
+}
+.about {
+  background-color: rgba(11, 11, 11, 0.75);
+}
+.about__border-top {
+  width: 0;
+  height: 0;
+  border-bottom: 150px solid rgba(11, 11, 11, 0.75);
+  border-left: 2000px solid transparent;
+}
+.about__border-bottom {
+  width: 0;
+  height: 0;
+  border-top: 150px solid rgba(11, 11, 11, 0.75);
+  border-right: 2000px solid transparent;
+}
+.about__skills_title {
+  margin-bottom: 25px;
+  font-size: calc(22px + 1.6260162602vw);
+}
+
+.descr-about {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 70px;
+}
+.descr-about__photo {
+  max-width: 450px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.descr-about__photo img {
+  width: 100%;
+  height: 100%;
+}
+.descr-about__info {
+  display: flex;
+  flex: 0 0 60%;
+  flex-direction: column;
+}
+.descr-about__title {
+  font-size: calc(22px + 1.6260162602vw);
+  margin-bottom: 25px;
+}
+.descr-about__text {
+  font-size: calc(14px + 0.6504065041vw);
+}
+
+.info-about {
+  max-width: 900px;
+  margin-bottom: 70px;
+}
+.info-about__title {
+  margin-bottom: 25px;
+  font-size: calc(22px + 1.6260162602vw);
+}
+.info-about__list {
+  padding-left: 15px;
+}
+.info-about__item {
+  position: relative;
+  font-size: calc(14px + 0.487804878vw);
+}
+.info-about__item::before {
+  content: "";
+  position: absolute;
+  top: 10px;
+  left: -15px;
+  width: 7px;
+  height: 7px;
+  background-color: #f4f1de;
+  border-radius: 50%;
+}
+.info-about__item:not(:last-child) {
+  margin-bottom: 15px;
+}
+
+.skills {
+  max-width: 750px;
+  width: 100%;
+  margin-left: auto;
+}
+.skills__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  height: 30px;
+  background-color: #f4f1de;
+}
+.skills__item:not(:last-child) {
+  margin-bottom: 15px;
+}
+.skills__name {
+  position: relative;
+  z-index: 5;
+  display: block;
+  width: 100px;
+  height: 100%;
+  background-color: #1c4448;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 2;
+  text-align: center;
+}
+.skills__progressbar {
+  width: 72%;
+  height: 100%;
+  padding-right: 5px;
+  margin-right: auto;
+  background-color: #81b29a;
+  box-shadow: 2px 0px 13px 0px #0b0b0b;
+  transform-origin: bottom;
+  transform: skewX(25deg);
+}
+.skills__range {
+  display: block;
+  width: 50px;
+  height: 100%;
+  position: relative;
+  z-index: 5;
+  margin-left: 5px;
+  background-color: #f4f1de;
+  text-align: center;
+  line-height: 1.7;
+  color: #0b0b0b;
+}
+.skill-scss .skills__progressbar {
+  width: 56%;
+}
+.skill-js .skills__progressbar {
+  width: 40%;
+}
+.skill-php .skills__progressbar {
+  width: 8%;
+}
+.skill-figma .skills__progressbar {
+  width: 32%;
+}
+.skill-ps .skills__progressbar {
+  width: 40%;
+}
+
+@media (max-width: 1199.99px) {
+  .container {
+    max-width: 970px;
+  }
+  .descr-about__photo {
+    margin-right: 15px;
+  }
+}
+@media (max-width: 991.99px) {
+  .container {
+    max-width: 750px;
+  }
+  .descr-about {
+    flex-direction: column;
+  }
+}
+@media (max-width: 766.99px) {
+  .container {
+    max-width: none;
+  }
+  .skills__name {
+    width: 85px;
+    font-size: 12px;
+    line-height: 2.5;
+  }
+  .skills__range {
+    width: 35px;
+    font-size: 13px;
+    line-height: 2.3;
+  }
+  .descr-about__photo {
+    max-width: 300px;
+  }
+}
+@media (max-width: 499.99px) {
+  .container {
+    max-width: none;
+  }
+  .skill-scss .skills__progressbar {
+    width: 56%;
+  }
+  .skill-js .skills__progressbar {
+    width: 40%;
+  }
+  .skill-php .skills__progressbar {
+    width: 8%;
+  }
+  .skill-figma .skills__progressbar {
+    width: 32%;
+  }
+  .skill-ps .skills__progressbar {
+    width: 40%;
   }
 }
 .footer {
