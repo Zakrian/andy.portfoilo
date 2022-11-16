@@ -98,6 +98,106 @@ window.addEventListener('DOMContentLoaded', () => {
 		body.classList.toggle('_block');
 	});
 
+	class PortfolioCards {
+		constructor(src, alt, name, link, subSelector, type, parent) {
+			this.src = src;
+			this.alt = alt;
+			this.name = name;
+			this.link = link;
+			this.subSelector = subSelector;
+			this.type = type;
+			this.parent = document.querySelector(parent);
+		}
+
+		render() {
+			const div = document.createElement('div');
+			div.classList.add('works__portfolio', `${this.subSelector}`, `${this.type}`);
+			div.innerHTML = `
+				<div class="portfolio__img">
+					<img src=${this.src} alt=${this.alt}></img>
+				</div>
+				<div class="portfolio__hover">
+					<span class="portfolio__title title">${this.name}</span>
+					<a href=${this.link} target="_blank" class="portfolio__btn btn">Посмотреть</a>
+				</div>
+			`;
+
+			this.parent.append(div);
+		}
+	}
+
+	new PortfolioCards(
+		"img/works/Porten.png",
+		"Porten",
+		"Porten",
+		"https://zakrian.github.io/porten/",
+		"portfolio-1",
+		"landing",
+		".works__wrapper"
+	).render();
+
+	new PortfolioCards(
+		"img/works/Cootels.png",
+		"Cootels",
+		"Cootels",
+		"https://zakrian.github.io/cootels/",
+		"portfolio-2",
+		"shop",
+		".works__wrapper"
+	).render();
+
+	new PortfolioCards(
+		"img/works/DenisNovik.png",
+		"DenisNovik",
+		"DenisNovik",
+		"https://zakrian.github.io/denisnovik/",
+		"portfolio-3",
+		"landing",
+		".works__wrapper"
+	).render();
+
+	new PortfolioCards(
+		"img/works/CoolerWash.png",
+		"CoolerWash",
+		"CoolerWash",
+		"https://zakrian.github.io/coolerwash/",
+		"portfolio-4",
+		"landing",
+		".works__wrapper"
+	).render();
+
+	const sortBtns = document.querySelectorAll('.sort-works__var'),
+		worksCards = document.querySelectorAll('.works__portfolio');
+
+	function filter(category, items) {
+		items.forEach(item => {
+			const isItemFiltered = !item.classList.contains(category),
+				isShowAll = category.toLowerCase() === 'all';
+
+			if (isItemFiltered && !isShowAll) {
+				item.classList.add('_anim-card');
+			} else {
+				item.classList.remove('_hide-card');
+				item.classList.remove('_anim-card');
+			}
+		});
+	}
+
+	sortBtns.forEach(btn => {
+		btn.addEventListener('click', () => {
+			const currentCategory = btn.dataset.filter;
+			filter(currentCategory, worksCards);
+		});
+	});
+
+	worksCards.forEach(card => {
+		card.ontransitionend = function() {
+			if (card.classList.contains('_anim-card')) {
+				card.classList.add('_hide-card');
+			}
+		};
+	});
+
 	addActiveClassToMenuLink(pcMenuLinks);
 	addActiveClassToMenuLink(mobMenuLinks);
 	scrollToAnchor();
