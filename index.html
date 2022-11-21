@@ -1,143 +1,222 @@
 <!DOCTYPE html>
 <html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="css/style.css" />
+    <title>Andy_Code</title>
+  </head>
 
-<head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <div class="container-fluid">
+          <div class="header__content">
+            <a href="#intro" class="header__logo link link">
+              <img src="img/icons/AndyCodeLogo.png" alt="Andy_Code" class="header__logo_img">
+              <p class="header__logo_name">Andy_Code</p>
+            </a>
+            <div class="header__menu menu">
+              <ul class="menu__list">
+                <li class="menu__item"><a href="#about" class="menu__link link link-about">Обо мне</a></li>
+                <li class="menu__item"><a href="#works" class="menu__link link link-works">Мои работы</a></li>
+                <li class="menu__item"><a href="#contacts" class="menu__link link link-contacts">Контакты</a></li>
+              </ul>
+            </div>
+            <div class="menu-icon">
+              <span class="top-span"></span>
+              <span class="bottom-span"></span>
+            </div>
+            <div class="mobile-menu">
+              <ul class="mobile-menu__list">
+                <div class="mobile__links">
+                  <li class="mobile-menu__item"><a href="#about" class="mobile-menu__link link">Обо мне</a></li>
+                  <li class="mobile-menu__item"><a href="#works" class="mobile-menu__link link">Мои работы</a></li>
+                  <li class="mobile-menu__item"><a href="#contacts" class="mobile-menu__link link">Контакты</a></li>
+                </div>
+              </ul>
+              <div class="mobile__social">
+                <a href="tel:+79181366982" class="mobile__social_link mobile__social_tel"></a>
+                <a href="#" class="mobile__social_link mobile__social_tg"></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
 
-	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+      <main class="main">
 
-	<link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
-	<link rel="stylesheet" href="css/style.css">
-	<title>Andy_Code</title>
-</head>
+        <section class="section intro" id="intro">
+          <div class="container">
+            <div class="intro__content">
+              <h1 class="intro__title title">Привет, меня зовут Андрей, я верстальщик</h1>
+              <h2 class="intro__subtitle">Профессионально верстаю сайты по Вашему макету и с учётом Ваших пожеланий</h2>
+              <button class="btn intro__btn">Заказать вёрстку</button>
+            </div>
+          </div>
+        </section>
 
-<body>
-	<div class="wrapper">
+        <div class="section__border section__border-top"></div>
+        <section class="section about" id="about">
+          <div class="container">
+            <div class="about__content">
+              <div class="about__descr descr-about">
+                <div class="descr-about__photo">
+                  <img src="img/meWithBg.jpg" alt="Супрун Андрей">
+                </div>
+                <div class="descr-about__info">
+                  <h3 class="descr-about__title about__title title">Кто я</h3>
+                  <p class="descr-about__text">Итак, меня зовут Супрун Андрей и я верстальщик. В 2020 окончил "Курс по вёрстке сайтов" от Фрилансера по жизни, получил сертификаты по направлениям HTML, CSS, JavaScript на платформе "SoloLearn", после чего начал более детальное изучение языка программирования JavaScript, а также разнообразных методик вёрстки элементов интерфейса (кастомные радиокнопки, анимации, реагирование интерфейса на скроллинг и тому подобное) на данный момент обладаю всеми знаниями и навыками для реализации интерактивных элементов интерфейса, таких как "бургер-меню", модальные окна, табы, аккордеоны и так далее. Также прохожу курс от Ивана Петриченко по языку JavaScript и библитоекам React.js, React.Redux и React.Native и планирую в дальнейшем развиваться в направлении разработки приложений с упором на их мобильные версии.</p>
+                </div>
+              </div>
+              <div class="about__info info-about">
+                <h3 class="info-about__title about__title title">Зачем я Вам</h3>
+                <ul class="info-about__list">
+                  <li class="info-about__item">Предоставлю качетсвенюю вёрстку Вашего сайта по Вашему макету с приненением современных технологий, стандартов и оптимизацией загрузки страниц</li>
+                  <li class="info-about__item">Исправление вёрстки после других "мастеров"</li>
+                  <li class="info-about__item">Наполнение контентом Вашего сайта</li>
+                  <li class="info-about__item">Поддержка Вашего сайта и внесение правок при необхожимости</li>
+                </ul>
+              </div>
+              <div class="about__skills skills">
+                <h3 class="about__skills_title about__title title">Мои навыки</h3>
+                <div class="skills__item skill-html">
+                  <span class="skills__name title">HTML</span>
+                  <div class="skills__progressbar"></div>
+                  <div class="skills__range"><span class="skills__range_lvl">90%</span></div>
+                </div>
+                <div class="skills__item skill-css">
+                  <span class="skills__name title">CSS</span>
+                  <div class="skills__progressbar"></div>
+                  <div class="skills__range"><span class="skills__range_lvl">90%</span></div>
+                </div>
+                <div class="skills__item skill-scss">
+                  <span class="skills__name title">SCSS</span>
+                  <div class="skills__progressbar"></div>
+                  <div class="skills__range"><span class="skills__range_lvl">70%</span></div>
+                </div>
+                <div class="skills__item skill-js">
+                  <span class="skills__name title">JavaScript</span>
+                  <div class="skills__progressbar"></div>
+                  <div class="skills__range"><span class="skills__range_lvl">50%</span></div>
+                </div>
+                <div class="skills__item skill-php">
+                  <span class="skills__name title">PHP</span>
+                  <div class="skills__progressbar"></div>
+                  <div class="skills__range"><span class="skills__range_lvl">10%</span></div>
+                </div>
+                <div class="skills__item skill-figma">
+                  <span class="skills__name title">Figma</span>
+                  <div class="skills__progressbar"></div>
+                  <div class="skills__range"><span class="skills__range_lvl">60%</span></div>
+                </div>
+                <div class="skills__item skill-ps">
+                  <span class="skills__name title">Photoshop</span>
+                  <div class="skills__progressbar"></div>
+                  <div class="skills__range"><span class="skills__range_lvl">50%</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <div class="section__border section__border-bottom"></div>
 
-		<header class="header">
-			<div class="container">
-				<div class="header__content">
-					<a href="#intro" class="header__logo logo">
-						<img class="logo__img" src="img/icons/AndyCodeLogo.png" alt="Супрун Андрей верстальщик">
-						<span class="logo__text">Andy_Code</span>
-					</a>
-					<div class="header__menu">
-						<div class="menu-icon burger-icon">
-							<span></span>
-							<span></span>
-							<span></span>
-						</div>
-						<div class="menu">
-							<ul class="menu__list">
-								<li class="menu__item"><a href="#intro" class="menu__link">Главная</a></li>
-								<li class="menu__item"><a href="#works" class="menu__link">Работы</a></li>
-								<li class="menu__item"><a href="#footer" class="menu__link">Контакты</a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-		</header>
+        <section class="section works" id="works">
+          <div class="container">
+            <h3 class="works__title title">Мои работы</h3>
+            <div class="works__sort sort-works">
+              <button class="sort-works__var sort-works__var-all" data-filter="all"><span>All</span></button>
+              <button class="sort-works__var sort-works__var-landing" data-filter="onepage"><span>Landing Page</span></button>
+              <button class="sort-works__var sort-works__var-shop" data-filter="manypages"><span>Shop</span></button>
+              <button class="sort-works__var sort-works__var-react" data-filter="react"><span>React</span></button>
+            </div>
+            <div class="works__wrapper">
+              <div class="works__portfolio portfolio-1 onepage" data-category="onepage">
+                <div class="portfolio__img">
+                  <img src="img/works/Porten.png"></img>
+                </div>
+                <div class="portfolio__hover">
+                  <span class="portfolio__title title">Porten</span>
+                  <button class="portfolio__btn btn">Посмотреть</button>
+                </div>
+              </div>
+              <div class="works__portfolio portfolio-2 manypages" data-category="manypages">
+                <div class="portfolio__img">
+                  <img src="img/works/Cootels.png"></img>
+                </div>
+                <div class="portfolio__hover">
+                  <span class="portfolio__title title">Cootels</span>
+                  <button class="portfolio__btn btn">Посмотреть</button>
+                </div>
+              </div>
+              <div class="works__portfolio portfolio-3 onepage" data-category="onepage">
+                <div class="portfolio__img">
+                  <img src="img/works/DenisNovik.png"></img>
+                </div>
+                <div class="portfolio__hover">
+                  <span class="portfolio__title title">DenisNovik</span>
+                  <button class="portfolio__btn btn">Посмотреть</button>
+                </div>
+              </div>
+              <div class="works__portfolio portfolio-4 onepage" data-category="onepage">
+                <div class="portfolio__img">
+                  <img src="img/works/CoolerWash.png"></img>
+                </div>
+                <div class="portfolio__hover">
+                  <span class="portfolio__title title">CoolerWash</span>
+                  <button class="portfolio__btn btn">Посмотреть</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
 
-		<main class="main">
+        <div class="section__border section__border-top"></div>
+        <section class="section contacts" id="contacts">
+          <div class="container">
+            <h3 class="contacts__title title">Оставить заявку</h3>
+            <div class="contacts__wrapper">
+              <form action="#" class="contacts__form form">
+                <input type="text" required placeholder="Имя*" class="form__input form__name _req">
+                <input type="tel" required placeholder="Номер телефона*" class="form__input form__tel _req">
+                <textarea name="message" required placeholder="Коротко о том, какой сайт Вам нужен...*" class="form__message _req"></textarea>
+                <button class="btn form__btn">Отправить</button>
+              </form>
+            </div>
+          </div>
+        </section>
 
-			<section class="section intro" id="intro">
-				<div class="container">
-					<div class="intro__inner inner-intro">
-						<div class="intro__item intro__item_left">
-							<h1 class="intro__title">Супрун Андрей Евгеньевич</h1>
-							<p class="intro__descr">
-								HTML-Верстальщик. Опыт более 1 года <br>
-								Пишу чистый, валидный код с использованием таких языков как: <br>
-								Html / Css(Scss) / JavaScript <br>
-								Изображения проходят необходимую обработку для ускорения загрузки страниц Вашего сайта <br>
-								При обращении ко мне Вы получаете: <br>
-								1. Кроссбраузерность <br>
-								2. Полную адаптацию под любой тип устройства <br>
-								3. Показатель 90+ в Google PageSpeed <br>
-								4. Чистый, нативный JS, без использования устаревших технологий и конструкторов, что так же ускоряет
-								загрузку сайта и упращает дальнейшие работы с кодом <br>
-							</p>
-							<a href=# class="intro__btn btn__pc btn">Оставить заявку</a>
-						</div>
-						<div class="intro__item intro__item_right">
-							<div class="intro__photo"><img src="img/me-02.jpg" alt="Супрун Андрей верстальщик"></div>
-						</div>
-					</div>
-				</div>
-			</section>
+        <section class="footer" id="footer">
+          <div class="container-fluid">
+            <div class="footer__inner">
+              <p class="footer__copy">© Супрун Андрей 2020</p>
+              <div class="footer__links">
+                <a href="tel:+79181366982" class="footer__link footer__link_tel">т.+7(918) 136-69-82</a>
+                <a href="https://t.me/+79181366982" class="footer__link footer__link_tg">Telegram</a>
+              </div>
+            </div>
+          </div>
+        </section>
 
-			<div class="brends">
-				<div class="swiper">
-					<div class="swiper-wrapper brends__inner">
-						<div class="swiper-slide brends__img"><img src="img/tecnology/chrome_logo.png" alt="Google Chrome"></div>
-						<div class="swiper-slide brends__img"><img src="img/tecnology/css_logo.png" alt="CSS"></div>
-						<div class="swiper-slide brends__img"><img src="img/tecnology/figma_logo.png" alt="Figma"></div>
-						<div class="swiper-slide brends__img"><img src="img/tecnology/filezilla_logo.jpg" alt="FileZilla"></div>
-						<div class="swiper-slide brends__img"><img src="img/tecnology/github_logo.png" alt="GitHub"></div>
-						<div class="swiper-slide brends__img"><img src="img/tecnology/html_logo.png" alt="HTML"></div>
-						<div class="swiper-slide brends__img"><img src="img/tecnology/js_logo.png" alt="JavaScript"></div>
-						<div class="swiper-slide brends__img"><img src="img/tecnology/liveserver_logo.png" alt="LiveServer"></div>
-						<div class="swiper-slide brends__img"><img src="img/tecnology/photoshop-logo.png" alt="Photoshop"></div>
-						<div class="swiper-slide brends__img"><img src="img/tecnology/scss_logo.png" alt="SASS"></div>
-						<div class="swiper-slide brends__img"><img src="img/tecnology/svg_logo.png" alt="SVG"></div>
-						<div class="swiper-slide brends__img"><img src="img/tecnology/vscode_logo.png" alt="VSCode"></div>
-					</div>
-				</div>
-			</div>
+      </main>
 
-			<section class="section services" id="works">
-				<div class="container">
-					<h2 class="services__title">Примеры работ</h2>
-					<div class="services__inner"></div>
-				</div>
-			</section>
+      <div class="overlay"></div>
+      <div class="modal">
+        <div class="modal__wrapper">
+          <h4 class="modal__title title">Оставить заявку</h4>
+          <btn class="modal__close">x</div>
+          <form action="POST" class="modal__form form">
+            <input type="text" required placeholder="Имя*" class="modal__input modal__name">
+            <input type="tel" required placeholder="Номер телефона*" class="modal__tel modal__input">
+            <textarea name="message" required placeholder="Коротко о том, какой сайт Вам нужен...*" class="modal__message"></textarea>
+            <button class="btn modal__btn">Отправить</button>
+          </form>
+        </div>
+      </div>
 
-		</main>
-
-		<footer class="footer" id="footer">
-			<div class="container">
-				<div class="footer__inner">
-					<a href="https://wa.me/79181366982" target="_blank" class="footer__link _icon-wa">WhatsApp</a>
-					<a href="https://vk.me/zak_code" target="_blank" class="footer__link _icon-vk">VK Сообщения</a>
-					<a href="tel:+79181366982" class="footer__link _icon-phone">Позвонить: +7 (918) 136-69-82</a>
-				</div>
-				<div class="footer__copy">© Copyright by Andy_Code</div>
-			</div>
-		</footer>
-
-		<div class="overlay"></div>
-
-		<div class="modal">
-			<div class="modal__wrap">
-				<div class="modal__inner">
-					<div class="modal__top">
-						<div class="modal__close">
-							<a class="modal__btn">
-								<span></span>
-								<span></span>
-							</a>
-						</div>
-						<h4 class="modal__title">Оставить заявку</h4>
-					</div>
-					<div class="modal__down">
-						<form action="mail.php" method="post" target="_blank" name="f1" id="form" class="modal__form">
-							<input type="text" name="name1" required placeholder="Введите имя... *" class="modal__item modal__input modal__name _req">
-							<input type="tel" name="number" placeholder="Введите номер телефона... *" class="modal__item modal__input modal__tel _req">
-							<input type="email" name="email1" required="required placeholder="Введите e-mail *" class="modal__item modal__name modal__email _email _req">
-							<textarea name="Message" name="text" placeholder="Коротко опишите проблему..." class="modal__item modal__message"></textarea>
-							<input type="submit" name="sab" class="modal__submit" value="Отправить">
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
-
-	</div>
-	<script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
-	<script src="js/app.js"></script>
-</body>
-
+    </div>
+    <script src="js/app.js"></script>
+  </body>
 </html>
