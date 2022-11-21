@@ -1,207 +1,155 @@
-window.addEventListener('DOMContentLoaded', () => {
+// Переменные и константы ====================================
+//Burger menu
+const menuBurger = document.querySelector('.menu-icon'),
+	menuBody = document.querySelector('.menu'),
+	//Modal window
+	introBtn = document.querySelector('.intro__btn'),
+	modalBtn = document.querySelector('.modal__btn'),
+	modal = document.querySelector('.modal'),
+	modalWrap = document.querySelector('modal__wrap'),
+	body = document.querySelector('body'),
+	overlay = document.querySelector('.overlay');
+//DOM Moving
+let main = document.querySelector('.main'),
+	brends = document.querySelector('.brends');
+const removeShowClass = () => {
+	modal.classList.remove('_show-modal');
+	body.classList.remove('body_fixed');
+	overlay.classList.remove('_show-overlay');
+};
 
-	const body = document.querySelector('body'),
-		burger = document.querySelector('.menu-icon'),
-		mobMenu = document.querySelector('.mobile-menu'),
-		pcMenuLinks = document.querySelectorAll('.menu__link'),
-		mobMenuLinks = document.querySelectorAll('.mobile-menu__link'),
-		anchors = document.querySelectorAll('.link'),
-		modalBtn = document.querySelector('.intro__btn'),
-		overlay = document.querySelector('.overlay'),
-		modal = document.querySelector('.modal'),
-		closeModal = document.querySelector('.modal__close');
-
-	function removeActiveClassOnMenuLink(selector) {
-		selector.forEach(item => {
-			item.classList.remove('_active');
-		});
-	}
-
-	function removeActiveClassOnMobileMenu() {
-		mobMenu.classList.remove('_active');
-		burger.classList.remove('_active');
-		toogleBlockClassToBody();
-	}
-
-	function addActiveClassToMenuLink(selector) {
-		selector.forEach(item => {
-			item.addEventListener('click', (e) => {
-				e.preventDefault();
-				const target = e.target;
-				if (target && target.classList.contains('_active')) {
-					target.classList.remove('_active');
-					removeActiveClassOnMobileMenu();
-				} else {
-					removeActiveClassOnMenuLink(selector);
-					target.classList.add('_active');
-					removeActiveClassOnMobileMenu();
-				}
-			});
-		});
-	}
-
-	function removeActiveClassOnMenuLinks(arr) {
-		arr.forEach(item => {
-			item.classList.remove('_active');
-		});
-	}
-
-	function toogleBlockClassToBody() {
-		if (body.classList.contains('_block')) {
-			body.classList.remove('_block');
-		} else {
-			body.classList.add('_block');
-		}
-	}
-
-	function scrollToAnchor() {
-		anchors.forEach(item => {
-			item.addEventListener('click', (e) => {
-				e.preventDefault();
-				const blockId = item.getAttribute('href');
-
-				document.querySelector(blockId).scrollIntoView({
-					behavior: 'smooth',
-					block: 'start'
-				});
-
-				if (e.target.classList.contains('header__logo') || e.target.classList.contains('header__logo_img') || e.target.classList.contains('header__logo_name')) {
-					removeActiveClassOnMenuLinks(pcMenuLinks);
-					removeActiveClassOnMenuLinks(mobMenuLinks);
-				}
-			});
-		});
-	}
-
-	function showModal() {
-		modalBtn.addEventListener('click', (e) => {
-			e.preventDefault();
-			modal.classList.add('_modal-active');
-			overlay.classList.add('overlay_show');
-			toogleBlockClassToBody();
-		});
-	}
-
-	function hideModal() {
-		window.addEventListener('click', (e) => {
-			const target = e.target;
-			if (target && target == closeModal || target.classList.contains('overlay')) {
-				modal.classList.remove('_modal-active');
-				overlay.classList.remove('overlay_show');
-			}
-		});
-	}
-
-	burger.addEventListener('click', () => {
-		burger.classList.toggle('_active');
-		mobMenu.classList.toggle('_active');
-		body.classList.toggle('_block');
-	});
-
-	class PortfolioCards {
-		constructor(src, alt, name, link, subSelector, type, parent) {
-			this.src = src;
-			this.alt = alt;
-			this.name = name;
-			this.link = link;
-			this.subSelector = subSelector;
-			this.type = type;
-			this.parent = document.querySelector(parent);
-		}
-
-		render() {
-			const div = document.createElement('div');
-			div.classList.add('works__portfolio', `${this.subSelector}`, `${this.type}`);
-			div.innerHTML = `
-				<div class="portfolio__img">
-					<img src=${this.src} alt=${this.alt}></img>
-				</div>
-				<div class="portfolio__hover">
-					<span class="portfolio__title title">${this.name}</span>
-					<a href=${this.link} target="_blank" class="portfolio__btn btn">Посмотреть</a>
-				</div>
-			`;
-
-			this.parent.append(div);
-		}
-	}
-
-	new PortfolioCards(
-		"img/works/Porten.png",
-		"Porten",
-		"Porten",
-		"https://zakrian.github.io/porten/",
-		"portfolio-1",
-		"landing",
-		".works__wrapper"
-	).render();
-
-	new PortfolioCards(
-		"img/works/Cootels.png",
-		"Cootels",
-		"Cootels",
-		"https://zakrian.github.io/cootels/",
-		"portfolio-2",
-		"shop",
-		".works__wrapper"
-	).render();
-
-	new PortfolioCards(
-		"img/works/DenisNovik.png",
-		"DenisNovik",
-		"DenisNovik",
-		"https://zakrian.github.io/denisnovik/",
-		"portfolio-3",
-		"landing",
-		".works__wrapper"
-	).render();
-
-	new PortfolioCards(
-		"img/works/CoolerWash.png",
-		"CoolerWash",
-		"CoolerWash",
-		"https://zakrian.github.io/coolerwash/",
-		"portfolio-4",
-		"landing",
-		".works__wrapper"
-	).render();
-
-	const sortBtns = document.querySelectorAll('.sort-works__var'),
-		worksCards = document.querySelectorAll('.works__portfolio');
-
-	function filter(category, items) {
-		items.forEach(item => {
-			const isItemFiltered = !item.classList.contains(category),
-				isShowAll = category.toLowerCase() === 'all';
-
-			if (isItemFiltered && !isShowAll) {
-				item.classList.add('_anim-card');
-			} else {
-				item.classList.remove('_hide-card');
-				item.classList.remove('_anim-card');
-			}
-		});
-	}
-
-	sortBtns.forEach(btn => {
-		btn.addEventListener('click', () => {
-			const currentCategory = btn.dataset.filter;
-			filter(currentCategory, worksCards);
-		});
-	});
-
-	worksCards.forEach(card => {
-		card.ontransitionend = function() {
-			if (card.classList.contains('_anim-card')) {
-				card.classList.add('_hide-card');
-			}
-		};
-	});
-
-	addActiveClassToMenuLink(pcMenuLinks);
-	addActiveClassToMenuLink(mobMenuLinks);
-	scrollToAnchor();
-	showModal();
-	hideModal();
-
+// Modal window =============================================================
+introBtn.addEventListener('click', function (e) {
+	// e.preventDefault
+	modal.classList.add('_show-modal');
+	body.classList.add('body_fixed');
+	overlay.classList.add('_show-overlay');
 });
+
+modalBtn.addEventListener('click', function () {
+	removeShowClass();
+});
+overlay.addEventListener('click', function () {
+	removeShowClass();
+});
+
+// Меню бургер ===============================================
+if (menuBurger) {
+	menuBurger.addEventListener("click", function (e) {
+		menuBurger.classList.toggle('_active');
+		if (menuBody) {
+			menuBody.classList.toggle('_active');
+		}
+	});
+}
+
+// Плавный скролл к якорю ===================================
+document.querySelectorAll('a[href^="#"').forEach(link => {
+
+	link.addEventListener('click', function (e) {
+		e.preventDefault();
+
+		let href = this.getAttribute('href').substring(1);
+
+		const scrollTarget = document.getElementById(href);
+
+		const topOffset = 80;
+		const elementPosition = scrollTarget.getBoundingClientRect().top;
+		const offsetPosition = elementPosition - topOffset;
+
+		window.scrollBy({
+			top: offsetPosition,
+			behavior: 'smooth'
+		});
+	});
+});
+
+// Изменение порядков элементов DOM при определенной ширине экрана ================
+if (window.innerWidth <= 767.99) {
+	main.append(brends);
+}
+
+// Swiper slider ============================================================
+const swiper = new Swiper('.swiper', {
+	direction: 'horizontal',
+	loop: true,
+	speed: 10000,
+	width: 800,
+	breakpoints: {
+		320: {
+			slidesPerView: 3,
+			spaceBetween: 50
+		},
+		991.99: {
+			slidesPerView: 7,
+			spaceBetween: 100
+		}
+	},
+	autoplay: {
+		delay: 800,
+	},
+});
+
+// Class for services section & his instances======================================
+class ServicesCard {
+	constructor(link, src, alt, title, descr, parentSelector) {
+		this.link = link;
+		this.src = src;
+		this.alt = alt;
+		this.title = title;
+		this.descr = descr;
+		this.parent = document.querySelector(parentSelector);
+	}
+
+	render() {
+		const el = document.createElement('div');
+		el.classList.add('services__item');
+
+		el.innerHTML = `
+			<a href=${this.link} target="_blank" class="services__link btn__pc"></a>
+			<div class="services__img">
+				<img src=${this.src} alt=${this.alt}>
+			</div>
+			<div class="services__name">${this.title}</div>
+			<div class="services__descr">${this.descr}</div>
+		`;
+
+		this.parent.append(el);
+	}
+}
+
+new ServicesCard(
+	'https://zakrian.github.io/coolerwash/',
+	'img/works/CoolerWash.png',
+	'Porten',
+	'Обслуживание сплит систем',
+	'Профилактическая (плановая) чистка внутреннего и внешнего блоков сплит системы водой под давлением, а также чистка пластикового корпуса внутреннего блока.',
+	'.services__inner'
+).render();
+
+new ServicesCard(
+	'https://zakrian.github.io/cootels/',
+	'img/works/Cootels.png',
+	'Cootels',
+	'Бронирование комнат и отелей',
+	'Комплексная чистка внутреннего и внешнего блоков сплит системы водой под давлением, антибактериальная обработка испарителя и вала(крыльчатки), а также чистка пластикового корпуса внутреннего блока',
+	'.services__inner'
+).render();
+
+new ServicesCard(
+	'https://zakrian.github.io/denisnovik/',
+	'img/works/DenisNovik.png',
+	'Denis Novik',
+	'Сайт портфолио UI/UX дизайнера',
+	'Профилактическая (плановая) чистка внутреннего и внешнего блоков сплит системы водой под давлением, а также чистка пластикового корпуса внутреннего блока.',
+	'.services__inner'
+).render();
+
+new ServicesCard(
+	'https://zakrian.github.io/porten/',
+	'img/works/Porten.png',
+	'Porten',
+	'Интернет-магазин мужских часов',
+	'Профилактическая (плановая) чистка внутреннего и внешнего блоков сплит системы водой под давлением, а также чистка пластикового корпуса внутреннего блока.',
+	'.services__inner'
+).render();
