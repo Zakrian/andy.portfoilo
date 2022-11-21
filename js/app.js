@@ -17,8 +17,7 @@ window.addEventListener('DOMContentLoaded', () => {
 		filterBtnsWrapper = worksSection.querySelector('.works__sort'),
 		filterBtns = worksSection.querySelectorAll('.sort-works__var'),
 		workksWrapper = worksSection.querySelector('.works__wrapper'),
-		worksItems = document.querySelectorAll('.works__portfolio'),
-		form = document.querySelector('form');
+		worksItems = document.querySelectorAll('.works__portfolio');
 
 	// let timeoutModal = setTimeout(showModal, 25000);
 
@@ -168,38 +167,39 @@ window.addEventListener('DOMContentLoaded', () => {
 	}
 
 	// Send form
-	form.addEventListener('submit', formSend);
+	// form.addEventListener('submit', formSend);
 	
-	async function formSend(e) {
-		// e.preventDeffault();
+	// async function formSend(e) {
+	// 	e.preventDeffault();
+	// 	const form = document.getElementById('form');
 
-		let error = formValidate(form);
-	}
+	// 	let error = formValidate(form);
+	// }
 
-	function formValidate(form) {
-		let error = 0;
-		let formReq = document.querySelectorAll('._req');
+	// function formValidate(form) {
+	// 	let error = 0;
+	// 	let formReq = document.querySelectorAll('._req');
 
-		console.log(formReq);
-		for (let i = 0; i < formReq.length; i++) {
-			const input = formReq[i];
-			formRemoveError(input);
+	// 	console.log(formReq);
+	// 	for (let i = 0; i < formReq.length; i++) {
+	// 		const input = formReq[i];
+	// 		formRemoveError(input);
 
-			if (input.value === '') {
-				formAddError(input);
-				error++;
-			}
-		}
-	}
+	// 		if (input.value === '') {
+	// 			formAddError(input);
+	// 			error++;
+	// 		}
+	// 	}
+	// }
 
-	function formAddError(input) {
-		input.parentElement.classList.add('_error');
-		input.classList.add('_error');
-	}
-	function formRemoveError(input) {
-		input.parentElement.classList.remove('_error');
-		input.classList.remove('_error');
-	}
+	// function formAddError(input) {
+	// 	input.parentElement.classList.add('_error');
+	// 	input.classList.add('_error');
+	// }
+	// function formRemoveError(input) {
+	// 	input.parentElement.classList.remove('_error');
+	// 	input.classList.remove('_error');
+	// }
 
 	// Portfolio cards Class
 	// class PortfolioCards {
