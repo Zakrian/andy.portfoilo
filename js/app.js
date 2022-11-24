@@ -17,7 +17,9 @@ window.addEventListener('DOMContentLoaded', () => {
 		filterBtnsWrapper = worksSection.querySelector('.works__sort'),
 		filterBtns = worksSection.querySelectorAll('.sort-works__var'),
 		workksWrapper = worksSection.querySelector('.works__wrapper'),
-		worksItems = document.querySelectorAll('.works__portfolio');
+		worksItems = document.querySelectorAll('.works__portfolio'),
+		form = document.querySelector('#form'),
+		errorModalForForm = form.querySelector('.modal-for-form');
 
 	// let timeoutModal = setTimeout(showModal, 25000);
 
@@ -116,38 +118,38 @@ window.addEventListener('DOMContentLoaded', () => {
 	// 	toogleBlockClassToBody();
 	// }
 
-	function hideModal() {
-		modal.classList.remove('_modal-active');
-		overlay.classList.remove('overlay_show');
-		toogleBlockClassToBody();
-	}
+	// function hideModal() {
+	// 	modal.classList.remove('_modal-active');
+	// 	overlay.classList.remove('overlay_show');
+	// 	toogleBlockClassToBody();
+	// }
 
 	// Active class to menu link on scroll
-	function addActiveClassOnMenuLinkInScroll() {
-		pcMenuLinks.forEach(item => {
-			item.classList.remove('_active');
-		});
+	// function addActiveClassOnMenuLinkInScroll() {
+	// 	pcMenuLinks.forEach(item => {
+	// 		item.classList.remove('_active');
+	// 	});
 
-		if (window.pageYOffset >= (abputPosition - 40)) {
-			pcMenuLinks[0].classList.add('_active');
-		} else {
-			pcMenuLinks[0].classList.remove('_active');
-		}
+	// 	if (window.pageYOffset >= (abputPosition - 40)) {
+	// 		pcMenuLinks[0].classList.add('_active');
+	// 	} else {
+	// 		pcMenuLinks[0].classList.remove('_active');
+	// 	}
 
-		if (window.pageYOffset >= (worksPosition - 40)) {
-			pcMenuLinks[0].classList.remove('_active');
-			pcMenuLinks[1].classList.add('_active');
-		} else {
-			pcMenuLinks[1].classList.remove('_active');
-		}
+	// 	if (window.pageYOffset >= (worksPosition - 40)) {
+	// 		pcMenuLinks[0].classList.remove('_active');
+	// 		pcMenuLinks[1].classList.add('_active');
+	// 	} else {
+	// 		pcMenuLinks[1].classList.remove('_active');
+	// 	}
 
-		if (window.pageYOffset >= (contactsPosition - 40)) {
-			pcMenuLinks[1].classList.remove('_active');
-			pcMenuLinks[2].classList.add('_active');
-		} else {
-			pcMenuLinks[2].classList.remove('_active');
-		}
-	}
+	// 	if (window.pageYOffset >= (contactsPosition - 40)) {
+	// 		pcMenuLinks[1].classList.remove('_active');
+	// 		pcMenuLinks[2].classList.add('_active');
+	// 	} else {
+	// 		pcMenuLinks[2].classList.remove('_active');
+	// 	}
+	// }
 
 	// Portfolio filter
 	function toggleActiveClassOnSortBtn(arr, element) {
@@ -167,39 +169,70 @@ window.addEventListener('DOMContentLoaded', () => {
 	}
 
 	// Send form
-	// form.addEventListener('submit', formSend);
-	
-	// async function formSend(e) {
-	// 	e.preventDeffault();
-	// 	const form = document.getElementById('form');
+	async function formSend(e) {
+		e.preventDefault();
+		let error = formValidate(form);
 
-	// 	let error = formValidate(form);
-	// }
+		let formData = new FormData(form);
 
-	// function formValidate(form) {
-	// 	let error = 0;
-	// 	let formReq = document.querySelectorAll('._req');
+		if (error === 0) {
+			form.classList.add('_sending');
+			let response = await fetch('sendmail.php', {
+				method: 'POST',
+				body: formData
+			});
+			if (response.ok) {
+				let result = await response.json();
+				alert(result.message);
+				form.reset();
+				form.classList.remove('_sending');
+			} else {
+				form.classList.remove('_sending');
+			}
 
-	// 	console.log(formReq);
-	// 	for (let i = 0; i < formReq.length; i++) {
-	// 		const input = formReq[i];
-	// 		formRemoveError(input);
+			errorModalForForm.classList.remove('_active');
+		} else {
+			errorModalForForm.classList.add('_active');
+		}
+	}
 
-	// 		if (input.value === '') {
-	// 			formAddError(input);
-	// 			error++;
-	// 		}
-	// 	}
-	// }
+	function formValidate(form) {
+		let error = 0;
+		let formReq = form.querySelectorAll('._req');
 
-	// function formAddError(input) {
-	// 	input.parentElement.classList.add('_error');
-	// 	input.classList.add('_error');
-	// }
-	// function formRemoveError(input) {
-	// 	input.parentElement.classList.remove('_error');
-	// 	input.classList.remove('_error');
-	// }
+		for (let i = 0; i < formReq.length; i++) {
+			const input = formReq[i];
+			formRemoveError(input);
+
+			if (input.classList.contains('_email')) {
+				if (emailTest(input)) {
+					formAddError(input);
+					error++;
+				}
+			} else if (input.getAttribute('type') === "checkbox" && input.checked === false) {
+				formAddError(input);
+				error++;
+			} else {
+				if (input.value === '') {
+					formAddError(input);
+					error++;
+				}
+			}
+		}
+		return error;
+	}
+	function formAddError(input) {
+		input.parentElement.classList.add('_error');
+		input.classList.add('_error');
+	}
+	function formRemoveError(input) {
+		input.parentElement.classList.remove('_error');
+		input.classList.remove('_error');
+	}
+	// Функция теста email
+	function emailTest(input) {
+		return !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,8})+$/.test(input.value);
+	}
 
 	// Portfolio cards Class
 	// class PortfolioCards {
@@ -274,7 +307,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 	// Listener CLICK on Document
 	document.addEventListener('click', (e) => {
-		e.preventDefault();
+		// e.preventDefault();
 		const target = e.target;
 
 		//Burger menu
@@ -283,12 +316,13 @@ window.addEventListener('DOMContentLoaded', () => {
 		}
 
 		//Modal window
-		if (target && target === modalBtn) {
-			showModal();
-			clearTimeout(timeoutModal);
-		} else if (target && target === closeModal || target === overlay) {
-			hideModal();
-		}
+		// if (target && target === modalBtn) {
+		// 	e.preventDefault();
+		// 	showModal();
+		// 	clearTimeout(timeoutModal);
+		// } else if (target && target === closeModal || target === overlay) {
+		// 	hideModal();
+		// }
 	});
 
 	// Listener CLICK on filter btns wrapper
@@ -307,6 +341,10 @@ window.addEventListener('DOMContentLoaded', () => {
 			filterClass = target.parentNode.dataset.filter;
 		}
 
+		// if (target === modalBtn) {
+
+		// }
+
 		worksItems.forEach(item => {
 			if (!item.classList.contains(filterClass) && filterClass != 'all') {
 				item.classList.add('_hide-card');
@@ -316,10 +354,13 @@ window.addEventListener('DOMContentLoaded', () => {
 		});
 	});
 
+	// Listener SUBMIT on form
+	form.addEventListener('submit', formSend);
+
 	// Listener SCROLL on Window
-	window.addEventListener('scroll', () => {
-		addActiveClassOnMenuLinkInScroll();
-	});
+	// window.addEventListener('scroll', () => {
+	// 	addActiveClassOnMenuLinkInScroll();
+	// });
 
 	addActiveClassToPcMenuLink(pcMenuLinks);
 	addActiveClassToMobileMenuLink(mobMenuLinks);
